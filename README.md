@@ -15,3 +15,10 @@ Those are only few questions you could ask yourself about AI ! but there is a lo
 
 This programm also have another goal ! 
 By using list it should be easy to modify and easy to share so i'm believing (when the first artistic part is created) to share an easy-editing version, maybe with a UI to create your own scenarios !
+
+**HOW TO USE** :
+
+https://ionicframework.com/docs/angular/your-first-app#download-required-tools
+  
+then *in powershell* :
+>ionic serve
