@@ -1,20 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
-
+    <div id="background" class="decorum">
+      <ion-grid >
+        <ion-row *ngFor="let row of background">
+          <ion-col *ngFor="let tile of row"><ion-img [src]="tilePath+tile+'.png'"></ion-img></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div id="floor" class="decorum">
+      <ion-grid >
+        <ion-row *ngFor="let row of floor">
+          <ion-col *ngFor="let tile of row"><ion-img [src]="tilePath+tile+'.png'"></ion-img></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div id="objects" class="decorum">
+      <ion-grid >
+        <ion-row *ngFor="let row of objects">
+          <ion-col *ngFor="let tile of row"><ion-img [src]="objectPath+tile+'.png'"></ion-img></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    
+    <ion-img></ion-img>
+    <div id="mainText">{{actualText}}</div>
+    <div>
+      <ion-button (click)="answerClick('oui')">Oui</ion-button>
+      <ion-button (click)="answerClick('non')">Non</ion-button>
+      <ion-button (click)="answerClick('jcp')">Je ne sais pas</ion-button>
+    </div>
+    
   </div>
 </ion-content>
