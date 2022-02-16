@@ -87,7 +87,7 @@ export class HomePage {
   yesButtonText="oui"
   noButtonText="non"
   idkButtonText="je ne sais pas"
-  textToDisplay = "Bonjour, vous allez-bien ?";
+  textToDisplay = "Bonjour, vous allez-bien ? ( n'oubliez pas d'activer l'audio de ce site ! )";
   actualText = "";
   actualState = 0;
   textState = 0;
