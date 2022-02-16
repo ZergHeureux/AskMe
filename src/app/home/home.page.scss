@@ -48,4 +48,11 @@ ion-img{
   background-color: white;
   padding:3%;
   border-radius: 8%;
+  font-family: indie;
 }
+@font-face {
+  font-family: "indie";
+  src:
+    url("/assets/font/indie.woff") format("woff"),
+    url("/assets/font/indie.woff2") format("woff2");
+  }
