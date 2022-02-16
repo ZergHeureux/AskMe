@@ -25,15 +25,23 @@
         </ion-row>
       </ion-grid>
     </div>
+    <div id="chara" class="decorum">
+      <ion-grid >
+        <ion-row *ngFor="let row of chara">
+          <ion-col *ngFor="let tile of row"><ion-img [src]="charaPath+tile+'.png'"></ion-img></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   <div id="container">
     
     <ion-img></ion-img>
-    <div id="mainText">{{actualText}}</div>
     <div>
       <ion-button (click)="answerClick('oui')">Oui</ion-button>
       <ion-button (click)="answerClick('non')">Non</ion-button>
       <ion-button (click)="answerClick('jcp')">Je ne sais pas</ion-button>
     </div>
+    <div id="mainText">{{actualText}}</div>
+    
     
   </div>
 </ion-content>

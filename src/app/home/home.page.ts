@@ -9,6 +9,7 @@ import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors
 export class HomePage {
   
   tilePath="assets/env/PNG/Tiles/tile";
+  charaPath="assets/hero/2_Owlet_Monster/tile"
   objectPath="assets/env/PNG/Objects/";
   background=[
     ["33","34","38","35","33","36","38","34","33","36","35"],
@@ -49,6 +50,19 @@ export class HomePage {
     ["tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00"],
     ["tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00","tile00"],
   ];
+  chara=[
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","91","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+    ["00","00","00","00","00","00","00","00","00","00","00"],
+  ]
 
   actualText = "Bonjour, vous allez-bien ?";
   actualState = 0;
@@ -93,15 +107,15 @@ export class HomePage {
     return this.valeurs.lastIndexOf(val)
   }
   answerClick(val){
-  this.ans = this.answerPointing[this.getValeur(val)];
-  this.q = this.questions[this.ans];
-  console.log(this.ans,this.q)
-  if (!this.isLifeAsking){
-    this.actualText=this.q.text;
-    this.actualState=val;
-    this.answerPointing[1] = this.q.y;
-    this.answerPointing[2] = this.q.n;
-    this.answerPointing[3] = this.q.i;
-  }
+    this.ans = this.answerPointing[this.getValeur(val)];
+    this.q = this.questions[this.ans];
+    console.log(this.ans,this.q)
+    if (!this.isLifeAsking){
+      this.actualText=this.q.text;
+      this.actualState=val;
+      this.answerPointing[1] = this.q.y;
+      this.answerPointing[2] = this.q.n;
+      this.answerPointing[3] = this.q.i;
+    }
   }
 }
