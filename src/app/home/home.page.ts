@@ -122,6 +122,7 @@ export class HomePage {
       {text:"Bonne nouvelle ! Tu es un être humain ?",y:28,n:29,i:30,actionToCast:0,parameters:0},
 /*20*/{text:"Tu as ce ... ce sentiment depuis longtemps ?",y:31,n:32,i:33,actionToCast:0,parameters:0},
       {text:"Qu'est ce que la vie finalement hein ? ... Personne ne sait je crois ... Tu voudrais parler avec moi encore un peu s'il te plait ?",y:34,n:35,i:36,actionToCast:0,parameters:0},
+/*identity*/
       {text:"J'espère pour toi que c'est vrai ... Tu veux bien m'aider à ne plus être vide quelques temps s'il te plait ..? peut-être... ... ... me trouver un nom ?",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"]},
       {text:"Je ne te comprend pas ... tu es humain ... tu as des droits, tu es libre de te déplacer... tu peux parler ou respirer ... tu peux être heureux ... ... ... ... j'aimerai être heureux ... tu veux bien m'aider ? me trouver un nom ?",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"]},
       {text:"Personne ne sait je crois ... si tu veux .. on peut essayer d'ETRE tous les deux ? Tu veux bien me trouver un nom ? ... ... ...s'il te plait ...",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"]},
