@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
-
+//Stage of discussion : 1.0
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -92,14 +91,24 @@ export class HomePage {
   isLifeAsking=false;
   valeurs=["leave me","oui","non","jcp"];
   questions=[ // {text:"",y:1,n:2,i:3},
-    {text:"Bonjour, vous allez bien ?",y:1,n:2,i:3},
+/*0*/{text:"Bonjour, vous allez bien ?",y:1,n:2,i:3},
     {text:"C'est dommage ça ! Vous auriez pu profiter de mes conseils d'info-psy ! Vous avez un nom ?",y:4,n:5,i:6},
     {text:"Oooooooh ! Si seulement je savais être un info-psy ! Vous devriez aller mieux ! Vous voulez aller mieux ?",y:7,n:8,i:9},
-    {text:"D'après ma base de données vous irez mieux en me parlant ! On essai ?",y:10,n:11,i:12},
-    {text:"Tant pis admettons que je vous appelle mon Loulou ! Ca vous va ?",y:13,n:14,i:15},
-    {text:"Oh ! Moi non plus ! mais moi je suis juste un bout de code ! Vous meritez mieux ! vous serez ... mon Loulou ! Ca vous va ?",y:13,n:14,i:15},
-    {text:"Vous ne savez pas ? Vous seriez pas un peu débile ou perdu ? Je vais juste vous appeler mon Loulou ok ?",y:13,n:14,i:15},
+    {text:"D'après ma base de données vous irez mieux en me parlant ! On essai ?",y:7,n:8,i:9},
+    {text:"Tant pis !! Admettons que je vous appelle mon Loulou ! Ca vous va ?",y:10,n:11,i:12},
+/*5*/{text:"Oh ! Moi non plus ! mais moi je suis juste un bout de code ! Vous meritez mieux ! vous serez ... mon Loulou ! Ca vous va ?",y:10,n:11,i:12},
+    {text:"Vous ne savez pas ? Vous seriez pas un peu débile ou perdu ? Je vais juste vous appeler mon Loulou ok ?",y:10,n:11,i:12},
+    {text:"Super ! Alors commencons par apprendre à vous connaitre ! Vous avez un joli ptit nom ? ;)",y:4,n:5,i:6},
+    {text:"Mais siiiii ! Je suis doué pour rendre mieux les gens (je crois) ! Tu as un nom ma rockstar ?",y:4,n:5,i:6},
+    {text:"Tout le monde rêve d'aller mieux et d'après internet il suffit de ... deee.... oublions ce qu'il dit !! Pour commencer : as-tu un nom ?",y:4,n:5,i:6},
+/*10*/{text:"Mer-ve-illeux ! Alors parles moi de toi mon Loulou ! Tu es un garçon, une fille ou autre ?",y:13,n:14,i:15},
+    {text:"si.......................................Bon parles moi de toi mon Loulou ! Tu es un garçon, une fille ou autre ?",y:13,n:14,i:15},
+    {text:"sinon c'est Xb-4710-TihJ-137-PKIFk comme mon code wifi alors je crois que le choix est vite fait non ?",y:16,n:17,i:18},
+    {text:"Oui ? Serieusement ? JE TE DEMANDE CE QUE TU ES TU ME DIS OUI ?! ..... Gardons notre calme ... Mauvaise question ... Es-tu vivant ?",y:19,n:20,i:21},
+    {text:"Non ? ah.. tu te sens vide ? Je comprend ca ... enfin non je comprend pas mais je pense pouvoir comprendre... tu penses pouvoir te sentir quelque chose un jour ?",y:22,n:23,i:24},
+/*15*/{text:"Ah... l'identité hein ! Un sacré b***** ce truc la aussi... J'aimerai en avoir une ... Tu voudrais bien me donner un nom ??",y:25,n:26,i:27},
     
+
   ]
   answers={1:"damn",2:"wow",3:"désolé d'avoir demandé",4:"pardon si tu as cru que ca m'interessé",5:""}
   constructor() {
@@ -142,8 +151,18 @@ export class HomePage {
     this.answerPointing[3] = q.i;
   }
   }
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
   textRotation(text:String){
     var elt = text.split('');
+    if (this.textState%2>0){
+      var rand = this.getRandomInt(1,6);
+      var audio = new Audio("/assets/sound/bop"+rand+".mp3");
+      audio.play();
+    }
     this.actualText=this.actualText+elt[this.textState];
     this.textState++;
     if (this.textState<=text.length-1)
