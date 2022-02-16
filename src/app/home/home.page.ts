@@ -84,10 +84,10 @@ export class HomePage {
     ["00","00","00","00","00","00","00","00","00","00","00"],
   ]
 
-  actualText = "Bonjour, vous allez-bien ?";
+  textToDisplay = "Bonjour, vous allez-bien ?";
+  actualText = "";
   actualState = 0;
-  ans;
-  q;
+  textState = 0;
   answerPointing = [0,1,2,3]
   isLifeAsking=false;
   valeurs=["leave me","oui","non","jcp"];
@@ -106,6 +106,7 @@ export class HomePage {
     setTimeout(() => {
       this.backGroundRotation();
     }, 1000);
+    this.textRotation(this.textToDisplay);
   }
   backGroundRotation(){
     for (var j=0;j<5;j++){
@@ -127,15 +128,29 @@ export class HomePage {
     return this.valeurs.lastIndexOf(val)
   }
   answerClick(val){
-    this.ans = this.answerPointing[this.getValeur(val)];
-    this.q = this.questions[this.ans];
-    console.log(this.ans,this.q)
-    if (!this.isLifeAsking){
-      this.actualText=this.q.text;
-      this.actualState=val;
-      this.answerPointing[1] = this.q.y;
-      this.answerPointing[2] = this.q.n;
-      this.answerPointing[3] = this.q.i;
+
+  var ans = this.answerPointing[this.getValeur(val)];
+  var q = this.questions[ans];
+  if (!this.isLifeAsking){
+    this.textToDisplay=q.text;
+    this.actualText="";
+    this.textState=0;
+    this.textRotation(this.textToDisplay);
+    this.actualState=val;
+    this.answerPointing[1] = q.y;
+    this.answerPointing[2] = q.n;
+    this.answerPointing[3] = q.i;
+  }
+  }
+  textRotation(text:String){
+    var elt = text.split('');
+    this.actualText=this.actualText+elt[this.textState];
+    this.textState++;
+    if (this.textState<=text.length-1)
+    {
+      setTimeout(() => {
+        this.textRotation(text)
+      }, 50);
     }
   }
 }
