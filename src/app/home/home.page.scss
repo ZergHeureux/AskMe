@@ -1,58 +1,41 @@
-#container {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding-left:2%;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #487cdc;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-.decorum{
-  position: absolute;
-  right:0;
-  left:2%;
-}
-ion-col{
-  z-index: -5;
-  width:100%;
-  margin:-1.9%;
-  margin-top:0.8%;
-  justify-content: start;
-
-}
-ion-img{
-  width:80%;
-  
-}
-#mainText{
-  margin:13% 30% 00% 30%;
-  background-color: white;
-  padding:3%;
-  border-radius: 8%;
-  font-family: indie;
-}
 @font-face {
   font-family: "indie";
   src:
     url("/assets/font/indie.woff") format("woff"),
     url("/assets/font/indie.woff2") format("woff2");
   }
+
+.tile{
+  width:6.6vh;
+}
+.row{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width:fit-content;
+}
+  
+.decorum{
+  position:absolute;
+  left:13.2vw;
+  right:13.2vw;
+  z-index: -5;
+
+  bottom: 0;
+}
+
+#mainText{
+  margin:40vh 35vw 30vh 35vw;
+  background-color: white;
+  padding:1%;
+  border-radius: 8%;
+  font-family: indie;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+}
+#buttonDiv{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4%;
+}
