@@ -1,39 +1,36 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-    <div id="background" class="decorum">
-      <ion-grid >
-        <ion-row *ngFor="let row of background">
-          <ion-col *ngFor="let tile of row"><ion-img [src]="tilePath+tile+'.png'"></ion-img></ion-col>
-        </ion-row>
-      </ion-grid>
+
+<div class="decorum">
+  <div *ngFor="let row of background" class="row">
+    <div *ngFor="let tile of row">
+      <ion-img class="tile" [src]="tilePath+tile+'.png'"></ion-img>
     </div>
-    <div id="floor" class="decorum">
-      <ion-grid >
-        <ion-row *ngFor="let row of floor">
-          <ion-col *ngFor="let tile of row"><ion-img [src]="tilePath+tile+'.png'"></ion-img></ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    <div id="objects" class="decorum">
-      <ion-grid >
-        <ion-row *ngFor="let row of objects">
-          <ion-col *ngFor="let tile of row"><ion-img [src]="objectPath+tile+'.png'"></ion-img></ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  <div id="container">
-    
-    <ion-img></ion-img>
-    <div id="mainText">{{actualText}}</div>
-    <div>
-      <ion-button (click)="answerClick('oui')">Oui</ion-button>
-      <ion-button (click)="answerClick('non')">Non</ion-button>
-      <ion-button (click)="answerClick('jcp')">Je ne sais pas</ion-button>
-    </div>
-    
   </div>
-</ion-content>
+</div>
+<div class="decorum">
+  <div *ngFor="let row of floor" class="row">
+    <div *ngFor="let tile of row">
+      <ion-img class="tile" [src]="tilePath+tile+'.png'"></ion-img>
+    </div>
+  </div>
+</div>
+<div class="decorum">
+  <div *ngFor="let row of objects" class="row">
+    <div *ngFor="let tile of row">
+      <ion-img class="tile" [src]="objectPath+tile+'.png'"></ion-img>
+    </div>
+  </div>
+</div>
+<div class="decorum">
+  <div *ngFor="let row of chara" class="row">
+    <div *ngFor="let tile of row">
+      <ion-img class="tile" [src]="charaPath+tile+'.png'"></ion-img>
+    </div>
+  </div>
+</div>
+
+<div id="mainText">{{actualText}}</div>
+<div id="buttonDiv">
+  <ion-button (click)="answerClick('oui')">Oui</ion-button>
+  <ion-button (click)="answerClick('non')">Non</ion-button>
+  <ion-button (click)="answerClick('jcp')">Je ne sais pas</ion-button>
+</div>
