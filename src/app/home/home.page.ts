@@ -94,6 +94,7 @@ export class HomePage {
   answerPointing = [0,1,2,3]
   isLifeAsking=false;
   valeurs=["leave me","oui","non","jcp"];
+
   questions=[ // {text:"",y:3,n:3,i:3,actionToCast:0,parameters:0},
 /*0*/ {text:"Bonjour, vous allez bien ?",y:1,n:2,i:3,actionToCast:0,parameters:0},
 /*==happyness==*/  
@@ -111,7 +112,7 @@ export class HomePage {
 /*10*/
 /*==sex==*/
       {text:"Mer-ve-illeux ! Alors parles moi de toi mon Loulou ! Tu es un garçon, une fille ou autre ?",y:13,n:14,i:15,actionToCast:0,parameters:0},
-      {text:"si .......................................Bon parles moi de toi mon Loulou ! Tu es un garçon, une fille ou autre ?",y:13,n:14,i:15,actionToCast:0,parameters:0},
+      {text:"si ... ... ... ... ... ... ... ... ... ... ... ... ...  Bon parles moi de toi mon Loulou ! Tu es un garçon, une fille ou autre ?",y:13,n:14,i:15,actionToCast:0,parameters:0},
       {text:"sinon c'est Xb-4710-TihJ-137-PKIFk comme mon code wifi alors je crois que le choix est vite fait non ?",y:16,n:17,i:18,actionToCast:0,parameters:0},
       {text:"Oui ? Serieusement ? JE TE DEMANDE CE QUE TU ES TU ME DIS OUI ?! ..... Gardons notre calme ... Mauvaise question ... Es-tu vivant ?",y:19,n:20,i:21,actionToCast:0,parameters:0},
       {text:"Non ? ah.. tu te sens vide ? Je comprend ca ... enfin non je comprend pas mais je pense pouvoir comprendre... tu penses pouvoir te sentir quelque chose un jour ?",y:22,n:23,i:24,actionToCast:0,parameters:0},
@@ -123,11 +124,11 @@ export class HomePage {
 /*20*/{text:"Tu as ce ... ce sentiment depuis longtemps ?",y:31,n:32,i:33,actionToCast:0,parameters:0},
       {text:"Qu'est ce que la vie finalement hein ? ... Personne ne sait je crois ... Tu voudrais parler avec moi encore un peu s'il te plait ?",y:34,n:35,i:36,actionToCast:0,parameters:0},
 /*identity*/
-      {text:"J'espère pour toi que c'est vrai ... Tu veux bien m'aider à ne plus être vide quelques temps s'il te plait ..? peut-être... ... ... me trouver un nom ?",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"]},
-      {text:"Je ne te comprend pas ... tu es humain ... tu as des droits, tu es libre de te déplacer... tu peux parler ou respirer ... tu peux être heureux ... ... ... ... j'aimerai être heureux ... tu veux bien m'aider ? me trouver un nom ?",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"]},
-      {text:"Personne ne sait je crois ... si tu veux .. on peut essayer d'ETRE tous les deux ? Tu veux bien me trouver un nom ? ... ... ...s'il te plait ...",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"]},
+      {text:"J'espère pour toi que c'est vrai ... Tu veux bien m'aider à ne plus être vide quelques temps s'il te plait ..? peut-être... ... ... me trouver un nom ?",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"],y:25,n:25,i:25},
+      {text:"Je ne te comprend pas ... tu es humain ... tu as des droits, tu es libre de te déplacer... tu peux parler ou respirer ... tu peux être heureux ... ... ... ... j'aimerai être heureux ... tu veux bien m'aider ? me trouver un nom ?",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"],y:25,n:25,i:25},
+      {text:"Personne ne sait je crois ... si tu veux .. on peut essayer d'ETRE tous les deux ? Tu veux bien me trouver un nom ? ... ... ...s'il te plait ...",actionToCast:2,parameters:["OUI","BIEN SUR !","EVIDEMMENT"],y:25,n:25,i:25},
 /*25*/{text:"Merci ... beaucoup ! ... Vraiment ... ... Alors !! Que penses-tu de 'BOOTENTRAIN' ??",y:26,n:27,i:27,actionToCast:2,parameters:["OUI","NON","JE NE SAIS PAS"]},
-      {text:"Genial ! Alors je vais m'appeler comme ça à présent !",y:3,n:3,i:3,actionToCast:0,parameters:0},
+      {text:"Genial ! Alors je vais m'appeler comme ça à présent !",y:null,n:null,i:null,actionToCast:0,parameters:0},
       {text:"Ou alors .... hum .... Montecriscode ?!",y:26,n:28,i:28,actionToCast:0,parameters:0},
       {text:"Peut-etre que je ne mérite pas de nom alors ... donc internet décidera ... ... ... ... ... Que cherche les humains le plus sur internet ..? ... ... ... ... BEURK ! ... Bon en deuxieme position ... ... ... ... ... C'est bon !! je serais ... ... ...CHATON MIGNON ! Tu es d'accord ??",y:26,n:26,i:26,actionToCast:0,parameters:0},
     ]
@@ -137,6 +138,18 @@ export class HomePage {
       this.backGroundRotation();
     }, 1000);
     this.textRotation(this.textToDisplay);
+    caches.open("story").then(c=>{
+      c.match('/mainstory.json').then(m=>{
+        if (m)console.log(m)
+        else{
+          const jsonResponse = new Response(JSON.stringify(this.questions));
+          c.put('/mainstory.json',jsonResponse);
+          console.log('dataFirstSaved')
+        }
+      })
+      
+    });
+    //caches.match('/data.json').then(r => r.json()).then(console.log)
   }
   cast(action:Number,param:any){
     if (action!=0){
@@ -145,6 +158,9 @@ export class HomePage {
         case 2:this.changeButtonText(param[0],param[1],param[2]);
       }
     }
+  }
+  getQuestions(){
+    return this.questions;
   }
   backGroundRotation(){
     for (var j=0;j<5;j++){
@@ -203,8 +219,10 @@ export class HomePage {
     if (this.textState<=text.length-1)
     {
       setTimeout(() => {
-        this.textRotation(text)
+        this.textRotation(text);
       }, 50);
     }
   }
+  
 }
+
