@@ -2,11 +2,14 @@
   <ion-toolbar>
     <ion-title>[TEST ZONE] Story Maker </ion-title>
   </ion-toolbar>
+  <div id="storiesButton">
+    <button *ngFor="let item of story" (click)="loadStory(story.indexOf(item))">{{story.indexOf(item)+1}}</button>
+  </div>
 </ion-header>
 <div id="content">
   <div id="allStory">
     <button (click)="saveStory()" id="saveButton">SAVE</button>
-    <div *ngFor="let item of story" class="story" id={{item.id}}>
+    <div *ngFor="let item of story[actualStory]" class="story" id={{item.id}}>
       <p>{{item.text}}</p>
       <div>
         <P>id : {{item.id}}</P>
@@ -42,3 +45,4 @@
     </div>
   </div>
 </div>
+

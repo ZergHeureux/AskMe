@@ -94,6 +94,8 @@ export class HomePage {
   answerPointing = [0,1,2,3]
   isLifeAsking=false;
   valeurs=["leave me","oui","non","jcp"];
+  story = [[],[],[],[],[]];
+  actualStory=0;
 
   questions=[ // {text:"",y:3,n:3,i:3,actionToCast:0,parameters:0},
 /*0*/ {text:"Bonjour, vous allez bien ?",y:1,n:2,i:3,actionToCast:0,parameters:0},
@@ -133,17 +135,37 @@ export class HomePage {
       {text:"Peut-etre que je ne mérite pas de nom alors ... donc internet décidera ... ... ... ... ... Que cherche les humains le plus sur internet ..? ... ... ... ... BEURK ! ... Bon en deuxieme position ... ... ... ... ... C'est bon !! je serais ... ... ...CHATON MIGNON ! Tu es d'accord ??",y:26,n:26,i:26,actionToCast:0,parameters:0},
     ]
   answers={1:"damn",2:"wow",3:"désolé d'avoir demandé",4:"pardon si tu as cru que ca m'interessé",5:""}
+  chooseStory(id){
+    this.actualStory=id;
+    this.actualState=0;
+    console.log(this.story[this.actualStory])
+    this.answerClick(0)
+  }
   constructor(private world:WorldService) {
     setTimeout(() => {
       this.backGroundRotation();
     }, 1000);
     this.textRotation(this.textToDisplay);
     caches.open("story").then(c=>{
-      c.match('/mainstory.json').then(m=>{
+      c.matchAll().then(m=>{
+        var j=0;
+        m.forEach(element => {
+          element.json().then(js => {
+            var i = 0;
+            js.forEach(element => {
+              var obj = { id: i, text: element.text, y: element.y, n: element.n, i: element.i, actionToCast: element.actionToCast, parameters: element.parameters }
+              this.story[j].push(obj);
+              i++;
+            });
+            j++;
+          });
+        })
+      })
+      c.match('/story0.json').then(m=>{
         if (m)console.log(m)
         else{
           const jsonResponse = new Response(JSON.stringify(this.questions));
-          c.put('/mainstory.json',jsonResponse);
+          c.put('/story0.json',jsonResponse);
           console.log('dataFirstSaved')
         }
       })
@@ -158,9 +180,6 @@ export class HomePage {
         case 2:this.changeButtonText(param[0],param[1],param[2]);
       }
     }
-  }
-  getQuestions(){
-    return this.questions;
   }
   backGroundRotation(){
     for (var j=0;j<5;j++){
@@ -187,21 +206,28 @@ export class HomePage {
     return this.valeurs.lastIndexOf(val)
   }
   answerClick(val){
-
-  var ans = this.answerPointing[this.getValeur(val)];
-  var q = this.questions[ans];
-  if (!this.isLifeAsking){
-    this.textToDisplay=q.text;
-    this.actualText="";
-    this.textState=0;
-    this.textRotation(this.textToDisplay);
-    this.actualState=val;
-    this.answerPointing[1] = q.y;
-    this.answerPointing[2] = q.n;
-    this.answerPointing[3] = q.i;
-    this.cast(q.actionToCast,q.parameters);
+    var q;
+    var ans = this.answerPointing[this.getValeur(val)];
+    if (val==0)ans=0;
+    q = this.story[this.actualStory][ans];
+    console.log(this.story[this.actualStory],ans,this.story[this.actualStory][ans])
+    if (!this.isLifeAsking){
+      if (q==undefined){
+        q = { id: 0, text: "", y:null , n:null , i:null , actionToCast:0 , parameters:0  }
+      }
+      if (q.text==""||q.text==undefined) q.text="Je n'ai rien d'autre à vous dire désolé ! Si vous avez créé une histoire peut-être devrez vous recharger la page !"
+      this.textToDisplay=q.text;
+      this.actualText="";
+      this.textState=0;
+      this.textRotation(this.textToDisplay);
+      this.actualState=val;
+      this.answerPointing[1] = q.y;
+      this.answerPointing[2] = q.n;
+      this.answerPointing[3] = q.i;
+      this.cast(q.actionToCast,q.parameters);
+    }
   }
-  }
+  
   getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -220,7 +246,7 @@ export class HomePage {
     {
       setTimeout(() => {
         this.textRotation(text);
-      }, 50);
+      }, 30);
     }
   }
   
