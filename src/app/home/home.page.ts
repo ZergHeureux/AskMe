@@ -246,7 +246,7 @@ export class HomePage {
     {
       setTimeout(() => {
         this.textRotation(text);
-      }, 30);
+      }, 40);
     }
   }
   

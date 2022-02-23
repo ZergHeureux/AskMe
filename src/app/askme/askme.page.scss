@@ -37,9 +37,9 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
-#saveButton{
-    height:165px;
-    width: 50px;
+.saveButton{
+    height:164px;
+    width: 65px;
 }
 .buttonDiv{
     margin-right: 3%;
@@ -79,4 +79,8 @@ input{
 }
 #actionToCastSelector{
     height: 40px;
+}
+.importer{
+    width:fit-content;
+    padding: 0 2vh 0 2vh;
 }

@@ -4,11 +4,16 @@
   </ion-toolbar>
   <div id="storiesButton">
     <button *ngFor="let item of story" (click)="loadStory(story.indexOf(item))">{{story.indexOf(item)+1}}</button>
+    <a [href]="downloadJsonHref" [download]="storydownload" ><button class="importer" (click)="saveStoryFile()"> save in file </button></a>
+    <input style="display: none" type="file" accept=".json" (change)="onFileLoad($event)" #fileinput>
+    <button class="importer" type="button" (click)="fileinput.click()"> import a story-file </button>
   </div>
 </ion-header>
 <div id="content">
   <div id="allStory">
-    <button (click)="saveStory()" id="saveButton">SAVE</button>
+    <div>
+      <button class="saveButton" (click)="saveStory()">SAVE LOCALLY</button>
+    </div>
     <div *ngFor="let item of story[actualStory]" class="story" id={{item.id}}>
       <p>{{item.text}}</p>
       <div>
