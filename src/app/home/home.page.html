@@ -1,4 +1,8 @@
 
+<button class="noselect" id="button" routerLink="/askme"></button>
+<div class="buttonstory">
+  <button *ngFor="let item of story" (click)='chooseStory(story.indexOf(item))'>story {{story.indexOf(item)+1}}</button>
+</div>
 <div class="decorum">
   <div *ngFor="let row of background" class="row">
     <div *ngFor="let tile of row">

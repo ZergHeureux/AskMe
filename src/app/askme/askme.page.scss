@@ -1,0 +1,82 @@
+#storiesButton{
+    background-color: darkslategray;
+    display: flex;
+    flex-direction: row;
+}
+.story{
+    display: flex;
+    border-radius: 25px;
+    height: fit-content;
+    background-color: white;
+    font-size: smaller;
+    margin:1vw;
+    padding:1vh;
+}
+.story>div{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+.story>p{
+    margin:3% 3% 0% 3%;
+    display: flex;
+    width:240px;
+}
+#allStory{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#content{
+    display: flex;
+    height:100vh;
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: darkslategray;
+    width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+#saveButton{
+    height:165px;
+    width: 50px;
+}
+.buttonDiv{
+    margin-right: 3%;
+    margin-left: 3%;
+}
+button{
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    margin-right: 1vh;
+}
+#editor{
+    display: none;
+    position: absolute;
+    bottom: 3vh;
+    left:1vh;
+    background-color: white;
+    height: 30vh;
+    padding:25px;
+    border-radius: 25px;
+}
+#buttonDivInput{
+    display: none;
+    margin-top: 40px;
+    flex-direction: column;
+    width:100px;
+}
+input{
+    border-style: outset;
+}
+#texteDiv{
+    display: flex;
+    flex-direction: row;
+}
+#textInput{
+    margin:0 1vh 0 1vh;
+}
+#actionToCastSelector{
+    height: 40px;
+}

@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>askme</ion-title>
+    <ion-title>[TEST ZONE] Story Maker </ion-title>
   </ion-toolbar>
+  <div id="storiesButton">
+    <button *ngFor="let item of story" (click)="loadStory(story.indexOf(item))">{{story.indexOf(item)+1}}</button>
+  </div>
 </ion-header>
+<div id="content">
+  <div id="allStory">
+    <button (click)="saveStory()" id="saveButton">SAVE</button>
+    <div *ngFor="let item of story[actualStory]" class="story" id={{item.id}}>
+      <p>{{item.text}}</p>
+      <div>
+        <P>id : {{item.id}}</P>
+        <p>actionToCast : {{item.actionToCast}}</p>
+        <p>param : {{item.parameters}}</p>
+      </div>
+      <div class="buttonDiv">
+        <button (click)="scrollTo(item,item.y)">id:{{item.y}}</button>
+        <button (click)="scrollTo(item,item.n)">id:{{item.n}}</button>
+        <button (click)="scrollTo(item,item.i)">id:{{item.i}}</button>
+      </div>
+      <div class="actioner">
+        <button class="deleter" (click)="deleteCard(item)">🗑️</button>
+        <button class="editor" (click)="editCard(item)">🖊️</button>
+      </div>
+    </div>
+    <div id="editor">
+      <select name="pets" id="actionToCastSelector">
+        <option value="" (click)="maskButton()">--Action au texte--</option>
+        <option value="breakTile" (click)="maskButton()">Break a Tile</option>
+        <option value="changeButton" (click)="displayButton()">Changer les 3 boutons</option>
+      </select>
+        <div id="texteDiv">
+          <div id="buttonDivInput">
+            <label>Boutton Oui</label><input type="text" id="buty">
+            <label>Boutton Non</label><input type="text" id="butn">
+            <label>Boutton JSP</label><input type="text" id="buti">
+          </div>
+        <textarea placeholder="texte à utiliser" id="textInput" rows="9" cols="35"></textarea>
+      </div>
+      <button (click)="sendData()">EDIT</button>
+      <button (click)="closeEdit()">CLOSE</button>
+    </div>
+  </div>
+</div>
 
-<ion-content>
-
-</ion-content>
