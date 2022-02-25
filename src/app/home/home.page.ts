@@ -146,6 +146,7 @@ export class HomePage {
       this.backGroundRotation();
     }, 1000);
     this.textRotation(this.textToDisplay);
+    
     caches.open("story").then(c=>{
       c.matchAll().then(m=>{
         var j=0;
@@ -237,7 +238,7 @@ export class HomePage {
     var elt = text.split('');
     if (this.textState%2>0 && elt[this.textState]!="."){
       var rand = this.getRandomInt(1,6);
-      var audio = new Audio("/assets/sound/bop"+rand+".mp3");
+      var audio = new Audio("assets/sound/bop"+rand+".mp3");
       audio.play();
     }
     this.actualText=this.actualText+elt[this.textState];
@@ -248,6 +249,10 @@ export class HomePage {
         this.textRotation(text);
       }, 40);
     }
+  }
+  moveLoading(){
+    document.getElementById("nivuniconnu").style.minHeight="0px";
+    document.getElementById("wrapper").style.display="none";
   }
   
 }

@@ -1,4 +1,16 @@
-
+<div id="nivuniconnu">
+  <div id="wrapper">
+    <a (click)="moveLoading()" class="my-super-cool-btn">
+      <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <span>GO!</span>
+    </a>
+  </div>
+</div>
 <button class="noselect" id="button" routerLink="/askme"></button>
 <div class="buttonstory">
   <button *ngFor="let item of story" (click)='chooseStory(story.indexOf(item))'>story {{story.indexOf(item)+1}}</button>
