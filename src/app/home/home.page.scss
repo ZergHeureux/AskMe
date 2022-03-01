@@ -284,10 +284,11 @@
   margin:40vh 35vw 30vh 35vw;
   background-color: white;
   padding:1%;
-  border-radius: 8%;
+  border-radius: 25px;
   font-family: indie;
   width: fit-content;
   display: flex;
+  color:black;
   justify-content: center;
 }
 #buttonDiv{
@@ -315,7 +316,14 @@
 	align-items: center;
 	justify-content: center;
 }
-
+#t91{
+  transition:1s;
+  position: absolute;
+  top:-30px;
+  left:-30px;
+  width: fit-content;
+}
+#trees2_2{}
 #button {
   position: absolute;
 	width: 150px;
