@@ -96,6 +96,7 @@ export class HomePage {
   valeurs=["leave me","oui","non","jcp"];
   story = [[],[],[],[],[]];
   actualStory=0;
+  isTalking=true;
 
   questions=[ // {text:"",y:3,n:3,i:3,actionToCast:0,parameters:0},
 /*0*/ {text:"Bonjour, vous allez bien ?",y:1,n:2,i:3,actionToCast:0,parameters:0},
@@ -139,12 +140,14 @@ export class HomePage {
     this.actualStory=id;
     this.actualState=0;
     console.log(this.story[this.actualStory])
-    this.answerClick(0)
+    this.answerClick(0);
+    
   }
   constructor(private world:WorldService) {
     setTimeout(() => {
       this.backGroundRotation();
     }, 1000);
+    this.playBackgroundMusic();
     this.textRotation(this.textToDisplay);
     
     caches.open("story").then(c=>{
@@ -170,9 +173,13 @@ export class HomePage {
           console.log('dataFirstSaved')
         }
       })
-      
     });
     //caches.match('/data.json').then(r => r.json()).then(console.log)
+  }
+  playBackgroundMusic(){
+    var audio = new Audio("assets/sound/music_kiks3310.mp3");
+    audio.play();
+    setTimeout(()=>{this.playBackgroundMusic()},19000)
   }
   cast(action:Number,param:any){
     if (action!=0){
@@ -217,15 +224,19 @@ export class HomePage {
         q = { id: 0, text: "", y:null , n:null , i:null , actionToCast:0 , parameters:0  }
       }
       if (q.text==""||q.text==undefined) q.text="Je n'ai rien d'autre à vous dire désolé ! Si vous avez créé une histoire peut-être devrez vous recharger la page !"
-      this.textToDisplay=q.text;
-      this.actualText="";
-      this.textState=0;
-      this.textRotation(this.textToDisplay);
-      this.actualState=val;
-      this.answerPointing[1] = q.y;
-      this.answerPointing[2] = q.n;
-      this.answerPointing[3] = q.i;
-      this.cast(q.actionToCast,q.parameters);
+      if (!this.isTalking){
+        this.textToDisplay=q.text;
+        this.actualText="";
+        this.textState=0;
+        this.textRotation(this.textToDisplay);
+        this.isTalking=true;
+        this.actualState=val;
+        this.answerPointing[1] = q.y;
+        this.answerPointing[2] = q.n;
+        this.answerPointing[3] = q.i;
+        this.cast(q.actionToCast,q.parameters);
+      }
+      
     }
   }
   
@@ -246,13 +257,23 @@ export class HomePage {
     if (this.textState<=text.length-1)
     {
       setTimeout(() => {
-        this.textRotation(text);
+          this.textRotation(text);
       }, 40);
     }
+    else this.isTalking=false;
   }
   moveLoading(){
     document.getElementById("nivuniconnu").style.minHeight="0px";
     document.getElementById("wrapper").style.display="none";
+    this.defineCharaPos();
+  }
+  defineCharaPos(){
+    var pos=document.getElementById("trees2_2").getBoundingClientRect();
+    console.log(pos)
+    document.getElementById("t91").style.left=pos.left.toString()+'px';
+    document.getElementById("t91").style.top=(pos.top+32).toString()+'px';
+    //document.getElementById("t91").style.right=(pos.right-32).toString()+'px';
+    //document.getElementById("t91").style.bottom=(pos.bottom-32).toString()+'px';
   }
   
 }
