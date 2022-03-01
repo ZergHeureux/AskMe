@@ -117,16 +117,11 @@ export class AskmePage implements OnInit {
   }
   isDisplayed = false
   displayButton() {
-    if (!this.isDisplayed) {
-      this.isDisplayed = true;
       document.getElementById("buttonDivInput").style.display = "flex";
-    }
   }
   maskButton() {
-    if (this.isDisplayed) {
-      this.isDisplayed = false;
+
       document.getElementById("buttonDivInput").style.display = "none";
-    }
   }
   closeEdit() {
     this.editedElement = null;
