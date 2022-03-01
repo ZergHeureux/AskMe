@@ -32,17 +32,11 @@
 <div class="decorum">
   <div *ngFor="let row of objects" class="row">
     <div *ngFor="let tile of row">
-      <ion-img class="tile" [src]="objectPath+tile+'.png'"></ion-img>
+      <ion-img id="{{tile}}" class="tile" [src]="objectPath+tile+'.png'"></ion-img>
     </div>
   </div>
 </div>
-<div class="decorum">
-  <div *ngFor="let row of chara" class="row">
-    <div *ngFor="let tile of row">
-      <ion-img class="tile" [src]="charaPath+tile+'.png'"></ion-img>
-    </div>
-  </div>
-</div>
+<div id="t91"><img src="assets/hero/2_Owlet_Monster/tile91.png"></div>
 
 <div id="mainText">{{actualText}}</div>
 <div id="buttonDiv">
